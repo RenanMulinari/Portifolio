@@ -14,17 +14,19 @@ const projects = {
 dots.forEach(dot => {
   dot.addEventListener('click', () => {
     const id = dot.getAttribute('data-project');
-    const proj = projects[id];
+    const proj = projects[id] || { title: "Projeto em Desenvolvimento", desc: "Em breve..." };
     modalTitle.textContent = proj.title;
     modalDesc.textContent = proj.desc;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    console.log('Modal aberto para projeto ' + id); // Depuração
   });
 });
 
 closeModal.addEventListener('click', () => {
   modal.classList.remove('active');
   document.body.style.overflow = '';
+  console.log('Modal fechado');
 });
 
 modal.addEventListener('click', (e) => {
@@ -36,4 +38,5 @@ modal.addEventListener('click', (e) => {
 
 window.addEventListener("load", () => {
   document.querySelector(".content").style.opacity = "1";
+  console.log('Script carregado com sucesso');
 });
